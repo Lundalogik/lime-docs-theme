@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/myyasuda/sphinx_materialdesign_theme#readme",
   "devDependencies": {
+    "babel-core": "^6.26.3",
     "babel-preset-env": "^1.6.1",
     "node-sass": "^4.7.2",
     "npm-run-all": "^4.1.2",

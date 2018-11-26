@@ -33,3 +33,15 @@ div.mdl-layout__header-row.header-links {
     overflow-x: auto;
     overflow-y: hidden;
 }
+
+.mdl-layout--fixed-drawer.is-upgraded:not(.is-small-screen)>.mdl-layout__header{
+    margin-left: 0px;
+    width: 100%;
+}
+
+
+.mdl-layout__drawer-button {
+    @media (min-width: $md-breakpoint) {
+        visibility: hidden;
+    }
+}

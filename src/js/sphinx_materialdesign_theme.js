@@ -4,6 +4,7 @@ import "babel-polyfill";
 import ScrollSpy from "./scrollspy";
 import AdjustHeight from "./adjust-height";
 
+
 $(function() {
     $('body').fadeIn(0);
     $('.page-content > blockquote:first-child').remove();
@@ -55,7 +56,7 @@ $(function() {
             $toggle.parent().toggleClass('show');
         });
     }
-    
+
     function styleMdlCodeBlock() {
         $('pre').hover(function() {
             $(this).attr('click-to-copy', 'click to copy...');
@@ -67,14 +68,14 @@ $(function() {
             }
         });
     }
-    
+
     function copyClipboard(selector) {
         var body = document.body;
         if(!body) return false;
-    
+
         var $target = $(selector);
         if ($target.length === 0) { return false; }
-    
+
         var text = $target.text();
         var textarea = document.createElement('textarea');
         textarea.value = text;
@@ -84,17 +85,17 @@ $(function() {
         document.body.removeChild(textarea);
         return result;
     }
-    
+
     function quickSearchClickEvent() {
         const $breadcrumb = $('.breadcrumb');
-    
+
         $('#waterfall-exp').focus(() => {
             if ($(window).width() <= 1024) {
-                $breadcrumb.hide(); 
+                $breadcrumb.hide();
             }
         }).blur(() => {
             if ($(window).width() <= 1024) {
-                $breadcrumb.show(); 
+                $breadcrumb.show();
             }
         });
     }

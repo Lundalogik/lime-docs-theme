@@ -53,3 +53,29 @@
         }
     }
 }
+
+.mdl-layout__drawer {
+    @media (min-width: $md-breakpoint) {
+        margin-top: 64px;
+        .mdl-layout__drawer-button {
+            visibility: hidden;
+        }
+    }
+    box-shadow: none;
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+div.globaltoc{
+    ul.collapse {
+        background-color:rgb(31, 31, 31);
+    }
+
+    .mdl-color-text--primary {
+        color: #fff !important;
+
+    }
+    .ul li .link-wrapper>a {
+        color: rgb(175, 175, 175)
+    }
+}
