@@ -1,1 +1,2 @@
 recursive-include sphinx_materialdesign_theme *
+include README.md
