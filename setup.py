@@ -22,7 +22,7 @@ setup(
     include_package_data=True,
     packages=find_packages(),
     command_options={
-        'build_sphinx': {
+        '': {
             'project': ('setup.py', NAME),
             'version': ('setup.py', VERSION),
             'release': ('setup.py', VERSION),
