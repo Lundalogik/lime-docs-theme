@@ -13,7 +13,7 @@ import logging
 import click
 
 
-DEFAULT_PYPI_INDEX = 'https://pypi.lime.tech/lime/develop'
+DEFAULT_PYPI_INDEX = 'https://pypi.lundalogik.com:3443/lime/develop'
 
 logger = logging.getLogger(__name__)
 ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -78,8 +78,7 @@ def upload(ctx, username=None, password=None, index=DEFAULT_PYPI_INDEX,
     ctx.invoke(build)
 
     def package_exists(name, version):
-        """
-        There needs to be a try catch here because the first time
+        """There needs to be a try catch here because the first time
         a project is uploaded it fails to find the project to check if the
         version exists. Error causes the entire process to stop.
 

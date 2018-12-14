@@ -3,7 +3,8 @@ from setuptools import setup, find_packages
 
 NAME = 'lime-docs-theme'
 URL = 'https://github.com/lundalogik/{}'.format(NAME)
-DESCRIPTION = 'Theme for the crm-platform docs, based on sphinx_materialdesign_theme'
+DESCRIPTION = 'Theme for the crm-platform docs, '
+'based on sphinx_materialdesign_theme'
 VERSION = '0.1.0'
 
 
@@ -27,7 +28,7 @@ setup(
             'release': ('setup.py', VERSION),
         }
     },
-    license= 'MIT License',
+    license='MIT License',
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
@@ -42,7 +43,7 @@ setup(
     install_requires=[
         # Add dependencies to other python packages here
     ],
-    entry_points = {
+    entry_points={
         'sphinx.html_themes': [
             'sphinx_materialdesign_theme = sphinx_materialdesign_theme',
         ]

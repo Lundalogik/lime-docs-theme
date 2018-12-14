@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-\
-import sys,os
+import sys
+import os
+
+from sphinx_materialdesign_theme import __version__
 
 pardir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 print(pardir)
 sys.path.append(pardir)
 
-from sphinx_materialdesign_theme  import __version__
 
 source_suffix = '.rst'
 master_doc = 'index'
@@ -34,7 +36,8 @@ html_theme_path = ['../']
 html_theme_options = {
     # Specify a list of menu in Header.
     # Tuples forms:
-    #  ('Name', 'external url or path of pages in the document', boolean, 'icon name')
+    #  ('Name', 'external url or path of pages in the document',
+    #   boolean, 'icon name')
     #
     # Third argument:
     # True indicates an external link.
@@ -44,19 +47,21 @@ html_theme_options = {
     # Specify the icon name.
     # For details see link.
     # https://material.io/icons/
-    'header_links' : [
+    'header_links': [
        ('Home', 'index', False, 'home'),
        ("ExternalLink", "http://example.com", True, 'launch'),
        ("NoIconLink", "http://example.com", True, ''),
-       ("GitHub", "https://github.com/myyasuda/sphinx_materialdesign_theme", True, 'link')
+       ("GitHub", "https://github.com/myyasuda/sphinx_materialdesign_theme",
+        True, 'link')
     ],
 
     # Customize css colors.
     # For details see link.
     # https://getmdl.io/customize/index.html
     #
-    # Values: amber, blue, brown, cyan deep_orange, deep_purple, green, grey, indigo, light_blue,
-    #         light_green, lime, orange, pink, purple, red, teal, yellow(Default: indigo)
+    # Values: amber, blue, brown, cyan deep_orange, deep_purple, green, grey,
+    # indigo, light_blue, light_green, lime, orange, pink, purple, red, teal,
+    # yellow(Default: indigo)
     'primary_color': 'indigo',
     # Values: Same as primary_color. (Default: pink)
     'accent_color': 'pink',
@@ -82,6 +87,6 @@ html_theme_options = {
 
 html_show_sourcelink = True
 
-rst_prolog= u"""
+rst_prolog = u"""
     .. |project| replace:: Sphinx Material Design Theme
 """
