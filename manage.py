@@ -4,11 +4,8 @@ import os.path
 import shutil
 import sys
 import os
-from subprocess import call, check_call, check_output
+from subprocess import call, check_call
 from os.path import abspath, dirname
-import glob
-from wheel.install import WheelFile
-import getpass
 import logging
 import click
 
@@ -25,13 +22,6 @@ ROOT = os.path.abspath(os.path.dirname(__file__))
     type=click.Choice(['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG']))
 def cli(loglevel):
     _setup_logger(loglevel)
-
-
-@cli.command(help='Build package')
-def build():
-    rm_rf('build')
-    rm_rf('dist')
-    check_call(['python', 'setup.py', 'bdist_wheel'])
 
 
 @cli.group(help='Run tests', invoke_without_command=True)
@@ -63,67 +53,6 @@ def test_coverage():
 @test.command(help="Check for PEP8 violations")
 def flake():
     check_call(['flake8', abspath(dirname(__file__))])
-
-
-@cli.command(help="Build wheel and upload to internal pypi server")
-@click.option('--force', '-f', default=False, is_flag=True, help="Force")
-@click.option('--username', '-u', help='Username for uploading to internal '
-              'pypi server')
-@click.option('--password', '-p', help='Password')
-@click.option('--index', '-i', default=DEFAULT_PYPI_INDEX,
-              help='Pypi index to use.')
-@click.pass_context
-def upload(ctx, username=None, password=None, index=DEFAULT_PYPI_INDEX,
-           force=False):
-    ctx.invoke(build)
-
-    def package_exists(name, version):
-        """There needs to be a try catch here because the first time
-        a project is uploaded it fails to find the project to check if the
-        version exists. Error causes the entire process to stop.
-
-        We assume the error is not network related as if it was other
-        erros will be thrown that are not caught.
-        """
-        exists = False
-        try:
-            exists = check_output(
-                'devpi list {}=={}'.format(name, version).split())
-        except Exception:
-            return False
-
-        if exists:
-            print('Package {}=={} already exists.'.format(name, version))
-        return exists
-
-    def get_wheel_path():
-        dist_dir = os.path.abspath(
-            os.path.join(os.path.dirname(__file__), 'dist'))
-        return next(iter(glob.glob('{}/*.whl'.format(dist_dir))))
-
-    def get_wheel_info(path):
-        parsed_filename = WheelFile(path).parsed_filename
-        return (parsed_filename.group('name'), parsed_filename.group('ver'))
-
-    if index:
-        check_call(['devpi', 'use', index])
-
-    wheel_path = get_wheel_path()
-    wheel_name, wheel_version = get_wheel_info(wheel_path)
-
-    if not package_exists(wheel_name, wheel_version) or force:
-        if username:
-            if not password:
-                password = getpass.getpass()
-            check_call(['devpi', 'login', username, '--password', password])
-
-        check_call(['devpi', 'upload', wheel_path])
-        check_call(['devpi', 'upload', '--no-vcs', '--only-docs'])
-
-        print('Published to pypi: {}=={}'.format(wheel_name, wheel_version))
-    else:
-        print('Package {}=={} is already published'.format(wheel_name,
-                                                           wheel_version))
 
 
 def rm(path):

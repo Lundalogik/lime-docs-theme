@@ -11,7 +11,7 @@ test: build
 
 .PHONY: publish
 publish:
-	@docker run $(IMAGE) python3 manage.py upload --username $(DEVPI_USERNAME) --password $(DEVPI_PASSWORD) --index https://pypi.lime.tech/lime/develop/+simple/
+	@docker run --rm $(IMAGE) lime-buildtools upload --username $(DEVPI_USERNAME) --password $(DEVPI_PASSWORD) --index https://pypi.lime.tech/lime/develop/+simple/
 
 
 .PHONY: pytest
