@@ -1,4 +1,4 @@
-FROM docker.lundalogik.com/lundalogik/crm/python-base:latest
+FROM 204506327171.dkr.ecr.eu-west-1.amazonaws.com/lundalogik/crm/python-base:latest
 
 CMD sh
 
