@@ -1,4 +1,4 @@
---index-url https://pypi.lundalogik.com:3443/lime/develop/+simple/
+--index-url https://pypi.lime.tech/simple/
 
 -e .
 
